@@ -98,6 +98,11 @@ class NiceActionController extends Controller
         //Selects all data from database for the nav
         $actions = NiceAction::all();
         
+        //For Ajax
+        if($request->ajax()){
+            return response()->json();
+        }
+        
         return redirect()->route('home', ['actions' => $actions]);
     }
     
