@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="centered">
-         @foreach($actions as $action)
+        @foreach($actions as $action)
             <a href="{{ route('niceaction',['action' => lcfirst($action->name)]) }}">{{ $action->name}}</a>
         @endforeach
         <br><br>
@@ -25,6 +25,7 @@
            <input type="hidden" value="{{ Session::token() }}" name="_token"/>
        </form>
        <br><br>
+       <ul>
         @foreach($logged_actions as $logged_action)
             <li>
                 {{ $logged_action->nice_action->name }} 
@@ -33,7 +34,14 @@
                 @endforeach
             </li>
         @endforeach
+        </ul>
+        @if($logged_actions->lastPage()>1)
+            @for($i = 1; $i <= $logged_actions->lastPage() ; $i++)
+                <a href="{{ $logged_actions->url($i)}}">{{$i}}</a>
+            @endfor
+        @endif
     </div>
+    
     
     
 
