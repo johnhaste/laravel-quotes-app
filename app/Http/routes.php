@@ -11,22 +11,6 @@
 |
 */
 
-Route::get('/',[
-    'uses'  => 'NiceActionController@getHome',
-    'as' => 'home'
-]);
-
-Route::group(['prefix' => 'do'], function(){
-    
-   //URL parameters received
-    Route::get('/{action}/{name?}',[
-        'uses'  => 'NiceActionController@getNiceAction', //Uses the NiceActionController to get the actions available
-        'as' => 'niceaction'
-    ]);
-    
-    Route::post('/add_action',[
-        'uses'  => 'NiceActionController@postInsertNiceAction', //Uses the NiceActionController to post new data to the actions available
-        'as' => 'add_action'
-    ]);
-    
-}); 
+Route::get('/',function(){
+   return view('index');
+});
